@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  background-color: #121212;
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.new-post-card {
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+}
+
+.new-post-card input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.posts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.post-card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.post-card h2 {
+  margin-top: 0;
+}
+
+.post-card button {
+  margin-right: 0.5rem;
+}
