@@ -85,19 +85,27 @@ export class HomeComponent implements OnInit {
   }
 
   savePost() {
-    if (this.postForm.invalid || !this.editingPost) return;
-    const updatedPost: Post = { ...this.editingPost, ...this.postForm.value };
-    this.service.updatePost(updatedPost).subscribe({
-      next: post => {
-        const index = this.posts.findIndex(p => p.id === post.id);
-        if (index !== -1) this.posts[index] = post;
-        this.messageService.add({ severity: 'success', summary: 'Post updated' });
-        this.editingPost = undefined;
-        this.postForm.reset();
-      },
-      error: err => console.error('Error updating post:', err)
-    });
-  }
+  if (this.postForm.invalid || !this.editingPost) return;
+  const updatedPost: Post = { ...this.editingPost, ...this.postForm.value };
+
+  
+  updatedPost.id = this.editingPost.id; 
+
+  this.service.updatePost(updatedPost).subscribe({
+    next: post => {
+      const index = this.posts.findIndex(p => p.id === post.id);
+      if (index !== -1) this.posts[index] = post;
+      this.messageService.add({ severity: 'success', summary: 'Post updated' });
+      this.editingPost = undefined;
+      this.postForm.reset();
+    },
+    error: err => {
+      console.error('Error updating post:', err);
+      this.messageService.add({ severity: 'error', summary: 'Update failed', detail: err.message });
+    }
+  });
+}
+
 
  deletePost(post: Post) {
   console.log("Deleting post:", post.id);
