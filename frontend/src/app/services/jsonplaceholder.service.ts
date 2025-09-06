@@ -19,9 +19,10 @@ export class JsonplaceholderService {
   }
 
 
-  getAll(): Observable<Post> {
-    return this.httpClient.get<Post>(this.baseUrl)
-  }
+getAll(): Observable<Post[]> {
+  return this.httpClient.get<Post[]>(this.baseUrl);
+}
+
 
   getById(idPost: number): Observable<Post> {
 
